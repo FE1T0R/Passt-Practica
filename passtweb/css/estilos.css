@@ -1,0 +1,13 @@
+.box{
+    width:15px;
+    height:15px;
+    position: absolute;
+    top:177px;
+    right: 130px;
+    background-color: rgb(7, 141, 58);
+  }
+  body{
+    background-color: whitesmoke;
+
+  }
+  
