@@ -2,8 +2,8 @@
     session_start();
     $conn = mysqli_connect(
     'sql.freedb.tech',
-    'freedb.root123456789',
-    '3X@@9q%8?SvvvT%',
-    'freedb_passt1'
+    'freedb_usuario123',
+    'W@4cRnYMQh&9tcw',
+    'freedb_mypasst'
 );
 ?>
