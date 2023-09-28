@@ -30,7 +30,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php session_unset(); }?>
-    <table class="table table-bordered">
+    <table class="table table-bordered"> <!--//// TABLA QUE MUESTRA LOS SITIOS //// -->
         <thead>
             <tr>
                 <th>Sitio</th>
