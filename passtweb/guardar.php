@@ -52,7 +52,8 @@
                             <?= $_SESSION['mensaje']?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                <?php session_unset(); }?>   
+                <?php //session_unset(); 
+            }?>   
         </div> 
     </div>   
 </div> 

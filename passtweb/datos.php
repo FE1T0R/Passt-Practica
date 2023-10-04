@@ -1,4 +1,5 @@
 <?php
+    include("db.php");
     function datos($result){
         while ($row = mysqli_fetch_array($result)) {
         ?>

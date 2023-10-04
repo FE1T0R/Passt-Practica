@@ -1,31 +1,8 @@
-<?php include('db.php') ?>
 <?php include('includes/header.php') ?>
-<?php
-  $username = 'admin';
-  $password = 'letmein';
-
-  if (isset($_SERVER['PHP_AUTH_USER']) &&
-      isset($_SERVER['PHP_AUTH_PW']))
-  {
-    if ($_SERVER['PHP_AUTH_USER'] === $username &&
-        $_SERVER['PHP_AUTH_PW']   === $password)
-          echo "You are now logged in";
-    else die("Invalid username/password combination");
-  }
-  else
-  {
-    header('WWW-Authenticate: Basic realm="Restricted Area"');
-    header('HTTP/1.0 401 Unauthorized');
-    die ("Please enter your username and password");
-  }
-?>
-
 <div class='container p-4'>
     <div class='row'>
         <div class='col-md-12 mx-auto'>
             <div class='card card-body'>
-
-
                 <h1>Bienvenido a Passt</h1>
                 <h2>tu Gestor de Contraseñas</h2>
                 <p>Passt es un herramienta que te permitirá hacer un correcta aplicación y administracion de tus contraseñas y demás datos sensibles requeridos para hacer un inicio de sesión en cualquier sistema de información en el cual requieras identificarte.</p>
@@ -35,13 +12,6 @@
                 </div>
 
             </div>
-            <?php
-                if (isset($_SESSION['mensaje'])) {?>
-                    <div class="alert alert-<?= $_SESSION['tipo_mensaje']?> alert-dismissible fade show" role="alert">
-                            <?= $_SESSION['mensaje']?>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                <?php session_unset(); }?>   
         </div> 
     </div>   
 </div> 

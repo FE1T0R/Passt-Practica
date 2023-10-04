@@ -1,18 +1,17 @@
 <?php
-
     include("db.php");
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
-        $query="SELECT id_sitio, nombre_s, usuario_s, email_s, password_s, fechacreado FROM sitios WHERE id_sitio=$id";
+        $query="SELECT id_sitio, nombre_s, usuario_s, email_s, password_s, fechacreado FROM Sitios WHERE id_sitio=$id;";
+        //$query="CALL busqueda('$id');";
         $result = mysqli_query($conn,$query);
-        if (mysqli_num_rows($result)==1) {
+        if (mysqli_num_rows($result)==1) {  
             $row = mysqli_fetch_array($result);
             $nombre_s = $row['nombre_s'];
             $usuario_s = $row['usuario_s'];
             $email_s = $row['email_s'];
             $contrasena_s= $row['password_s'];
         }
-
     }
     if (isset($_POST['cancelar'])) {
         header("Location: sitio.php");        

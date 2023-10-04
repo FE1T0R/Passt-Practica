@@ -1,6 +1,7 @@
-<?php include('db.php') ?>
-<?php include('datos.php') ?>
-<?php include('includes/header.php') ?>
+<?php require_once('db.php'); 
+include('datos.php'); 
+include('includes/header.php'); 
+session_start();?>
 
 <div class=" container-fluid col-md-10 mx-auto">
     <img class="position-relative"   src="multimedia/animacion.gif" alt="Passt Banner">
@@ -29,7 +30,7 @@
                     <?= $_SESSION['mensaje1']?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-        <?php session_unset(); }?>
+        <?php }?>
     <table class="table table-bordered"> <!--//// TABLA QUE MUESTRA LOS SITIOS //// -->
         <thead>
             <tr>
@@ -43,28 +44,33 @@
         </thead>
         <tbody>
             <?php
+                $mysessionid=$_SESSION['id_usuario'];
                 if (isset($_POST['codificar'])) {
                     $busqueda = $_POST['busqueda'];
-                    $query = "CALL encriptado('$busqueda');";
+                    $query = "CALL encriptado('$busqueda','$mysessionid');";
                     $result = mysqli_query($conn,$query);
                     echo datos($result);
                 }
                 if (isset($_POST['buscar'])) {
                     $busqueda = $_POST['busqueda'];
-                    $query = "CALL busqueda('$busqueda');";
+                    $query = "CALL busqueda('$busqueda','$mysessionid');";
                     $result = mysqli_query($conn,$query);
                     echo datos($result);
                 }else {
-                    
-                        /*$query = "SELECT id_sitio, nombre_s, usuario_s, email_s, 'password_s', fechacreado from Sitios;";*/
-                        $query = "CALL consultarGeneral()";
+                        
+                        $query = "CALL consultargeneral('$mysessionid');";
                         $result = mysqli_query($conn,$query);
                         echo datos($result);
                     }
             ?>
         </tbody>
     </table> 
-
+    <button type="submit" value="Cerrar Sesion" class="btn btn-danger btn-block reset"><a href="index.php?logout=true">Cerrar Sesión</a></button>
+    <?php
+        if(isset($_GET['logout'])){
+            session_unset();
+            header("Location: index.php");}
+    ?>
 
 </div>
 
