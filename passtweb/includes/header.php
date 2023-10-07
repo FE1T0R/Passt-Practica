@@ -12,7 +12,25 @@
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <div class="container">
-            <a href="index.php" class="navbar-brand">PASST</a>
-            <a href="sitio.php" class="navbar-brand">SITIOS</a>
+        
+        <?php
+        require_once('db.php');
+        if (isset($_POST['cerrarsesion'])) {
+            session_destroy();
+            header("Location: sitio.php");        
+        }
+
+        session_start();
+        if(isset($_SESSION['id_usuario'])){
+            ?><a href="sitio.php" class="navbar-brand">MIS SITIOS</a>
+            <form action="index.php" method="POST"><a href="index.php" name="cerrarsesion" class="navbar-brand">CERRAR SESIÓN</a></form><?php
+        }else{
+            ?><a href="index.php" class="navbar-brand">PASST</a>
+            <a href="iniciarsesion.php" class="navbar-brand">INICIAR SESIÓN</a><?php
+        }
+        ?>
+
         </div>
     </nav>
+
+    

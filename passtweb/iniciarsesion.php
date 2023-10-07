@@ -7,9 +7,6 @@ $mensajerror='';
 if (isset($_POST['cancelariniciosesion'])) {
     header("Location: index.php");
     session_destroy();}
-
-
-
 if (isset($_POST['iniciarsesion'])) {
     
     $usuario=$_POST['UsuarioIs'];
@@ -17,9 +14,8 @@ if (isset($_POST['iniciarsesion'])) {
     $query="call iniciarsesion('$usuario','$clavemaestra');";
     $result = mysqli_query($conn,$query);
     if (mysqli_num_rows($result)==1) {    
-         
+        //session_start();
         $row = mysqli_fetch_array($result);
-        session_start();
         $_SESSION['usuario'] = $row['usuario_u'];
         $_SESSION['id_usuario'] = $row['id_usuario'];
         header("Location: sitio.php");

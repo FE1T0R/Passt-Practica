@@ -1,7 +1,10 @@
-<?php require_once('db.php'); 
+<?php 
+//session_start();
+require_once('db.php'); 
 include('datos.php'); 
 include('includes/header.php'); 
-session_start();?>
+
+?>
 
 <div class=" container-fluid col-md-10 mx-auto">
     <img class="position-relative"   src="multimedia/animacion.gif" alt="Passt Banner">
@@ -65,12 +68,7 @@ session_start();?>
             ?>
         </tbody>
     </table> 
-    <button type="submit" value="Cerrar Sesion" class="btn btn-danger btn-block reset"><a href="index.php?logout=true">Cerrar Sesión</a></button>
-    <?php
-        if(isset($_GET['logout'])){
-            session_unset();
-            header("Location: index.php");}
-    ?>
+    
 
 </div>
 

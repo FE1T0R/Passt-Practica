@@ -2,7 +2,7 @@
     include("db.php");
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
-        $query="SELECT id_sitio, nombre_s, usuario_s, email_s, password_s, fechacreado FROM Sitios WHERE id_sitio=$id;";
+        $query="SELECT id_sitio, nombre_s, usuario_s, email_s, decodificado(password_s), fechacreado FROM Sitios WHERE id_sitio=$id;";
         //$query="CALL busqueda('$id');";
         $result = mysqli_query($conn,$query);
         if (mysqli_num_rows($result)==1) {  
@@ -30,8 +30,8 @@
         /*$query="call editar('Aula USB','Paquito','sucorreo@sucorreo.com','password',5);";*/
         mysqli_query($conn,$query); 
 
-        $_SESSION['mensaje1'] = "Sitio Actualizado Correctamente";
-        $_SESSION['tipo_mensaje1'] = "primary";  
+        $_SESSION['mensajeEditar'] = "Sitio Actualizado Correctamente";
+        $_SESSION['tipo_mensajeEditar'] = "primary";  
         header("Location: sitio.php");    
     }
 ?>
@@ -60,7 +60,7 @@
                     <div class="form-group">
                         <label>Contraseña del sitio</label>
                         <input type="text" name="ContrasenaSitio" class="form-control"
-                         autofocus value="<?php echo $contrasena_s;?>"><!-- echo $contrasena_s;-->
+                         autofocus value="<?php echo $contrasena_s?>"><!-- echo $contrasena_s;-->
                          
                     </div>
                         <input type="submit" name="editar123" value="Editar" class="btn btn-success btn-block">
@@ -70,4 +70,13 @@
         </div>
     </div>
  </div>
-<?php include("includes/footer.php")?>
+
+ <?php
+                if (isset($_SESSION['mensaje'])) {?>
+                    <div class="alert alert-<?= $_SESSION['tipo_mensaje']?> alert-dismissible fade show" role="alert">
+                            <?= $_SESSION['mensaje']?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php //session_unset();
+             } 
+ include("includes/footer.php")?>
